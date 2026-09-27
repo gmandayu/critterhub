@@ -1,0 +1,25 @@
+{
+    "compilerOptions": {
+        "allowJs": true,
+        "checkJs": false,
+        "jsx": "react-jsx",
+        "module": "esnext",
+        "moduleResolution": "bundler",
+        "noEmit": true,
+        "types": ["vite/client", "node"],
+        "baseUrl": ".",
+        "ignoreDeprecations": "6.0",
+        "paths": {
+            "@/*": ["src/*"],
+            "@app/*": ["./src/app/*"],
+            "@assets/*": ["./src/assets/*"],
+            "@features/*": ["./src/features/*"],
+            "@shared/*": ["./src/shared/*"],
+            "@styles/*": ["./src/styles/*"],
+            "@data/*": ["./src/data/*"],
+            "@test/*": ["./src/test/*"]
+        }
+    },
+    "include": ["src"],
+    "exclude": ["dist", "coverage", "node_modules"]
+}

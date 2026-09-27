@@ -1,25 +1,53 @@
 {
-  "name": "critterhub",
-  "private": true,
-  "version": "0.0.0",
-  "type": "module",
-  "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "lint": "oxlint",
-    "preview": "vite preview"
-  },
-  "dependencies": {
-    "@tailwindcss/vite": "^4.3.3",
-    "react": "^19.2.8",
-    "react-dom": "^19.2.8",
-    "tailwindcss": "^4.3.3"
-  },
-  "devDependencies": {
-    "@types/react": "^19.2.18",
-    "@types/react-dom": "^19.2.7",
-    "@vitejs/plugin-react": "^6.1.1",
-    "oxlint": "^1.81.0",
-    "vite": "^8.3.0"
-  }
+    "name": "critterhub",
+    "private": true,
+    "version": "0.0.0",
+    "type": "module",
+    "scripts": {
+        "dev": "vite",
+        "build": "vite build",
+        "lint": "oxlint --config ./oxlint.config.js .",
+        "lint:fix": "oxlint --config ./oxlint.config.js . --fix",
+        "preview": "vite preview",
+        "test": "vitest run",
+        "test:watch": "vitest",
+        "format": "prettier --write .",
+        "format:check": "prettier --check .",
+        "typecheck": "tsc --noEmit",
+        "validate": "npm run format:check && npm run typecheck && npm run lint && npm run test && npm run build && npm audit",
+        "prepare": "husky",
+        "fix": "prettier . --write && oxlint --config ./oxlint.config.js . --fix",
+        "check": "prettier --check && oxlint --config ./oxlint.config.js .",
+        "verify": "prettier . --check && oxlint --config ./oxlint.config.js . && vite build"
+    },
+    "lint-staged": {
+        "*.{js,jsx}": [
+            "prettier --write",
+            "oxlint --config ./oxlint.config.js"
+        ],
+        "*.{scss,css}": [
+            "prettier --write"
+        ]
+    },
+    "dependencies": {
+        "@tailwindcss/vite": "^4.3.3",
+        "react": "^19.2.8",
+        "react-dom": "^19.2.8",
+        "react-router-dom": "^7.18.4",
+        "tailwindcss": "^4.3.3"
+    },
+    "devDependencies": {
+        "@types/node": "^26.6.3",
+        "@types/react": "^19.2.18",
+        "@types/react-dom": "^19.2.7",
+        "@vitejs/plugin-react": "^6.1.1",
+        "husky": "^9.1.7",
+        "jsdom": "^30.1.1",
+        "lint-staged": "^17.6.0",
+        "oxlint": "^1.81.0",
+        "prettier": "^3.9.9",
+        "prettier-plugin-tailwindcss": "^0.8.1",
+        "vite": "^8.3.0",
+        "vitest": "^5.0.2"
+    }
 }
