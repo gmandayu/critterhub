@@ -1,20 +1,10 @@
-function normalizeBasePath(value) {
-    const basePath = typeof value === 'string' && value.trim() ? value.trim() : '/';
+import z from 'zod/v3';
 
-    if (!basePath.startsWith('/')) {
-        throw new Error('VITE_APP_BASE_PATH must start with "/".');
-    }
-
-    return basePath.endsWith('/') ? basePath : `${basePath}/`;
-}
+const environmentSchema = z.object({
+    VITE_APP_NAME: z.string().min(1),
+    VITE_APP_BASE_PATH: z.string().min(1),
+});
 
 export function parseEnvironment(rawEnvironment) {
-    const appName =
-        typeof rawEnvironment.VITE_APP_NAME === 'string' && rawEnvironment.VITE_APP_NAME.trim()
-            ? rawEnvironment.VITE_APP_NAME.trim()
-            : 'CritterHub';
-    return {
-        VITE_APP_NAME: appName,
-        VITE_APP_BASE_PATH: normalizeBasePath(rawEnvironment.VITE_APP_BASE_PATH),
-    };
+    return environmentSchema.parse(rawEnvironment);
 }

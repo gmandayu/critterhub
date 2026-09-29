@@ -1,29 +1,501 @@
 @import 'tailwindcss';
+@import '@fontsource-variable/inter';
+@import '@fontsource-variable/jetbrains-mono';
 
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
+/* ----------------------------------------------------------- */
+/* design tokens */
+/* ----------------------------------------------------------- */
 :root {
-    font-family:
-        Inter,
-        system-ui,
-        -apple-system,
-        BlinkMacSystemFont,
-        'Segoe UI',
-        sans-serif;
-    color-scheme: dark;
-    background: #0f1117;
-    color: #f5f5f5;
+    /* light theme (default) — warna dasar putih bersih */
+    --ch-background: #f6f7f5;
+    --ch-foreground: #111814;
+
+    --ch-surface: #ffffff;
+    --ch-surface-elevated: #ffffff;
+
+    --ch-card: #ffffff;
+    --ch-popover: #ffffff;
+
+    --ch-foreground-secondary: #52645b;
+    --ch-foreground-muted: #65736c;
+
+    --ch-border: #dde4e0;
+    --ch-divider: #e9eeeb;
+    --ch-input: #cbd5cf;
+    --ch-ring: #087f5b;
+    --ch-primary-text: #087f5b;
+
+    --ch-success: #147438;
+    --ch-warning: #a34b08;
+    --ch-danger: #b42318;
+    --ch-info: #175cd3;
+
+    --ch-shadow-xs: 0 1px 2px rgb(17 24 20 / 10%);
+    --ch-shadow-sm: 0 1px 3px rgb(17 24 20 / 8%), 0 1px 2px rgb(17 24 20 / 6%);
+    --ch-shadow-md: 0 4px 8px -2px rgb(17 24 20 / 10%), 0 2px 4px -2px rgb(17 24 20 / 6%);
+    --ch-shadow-lg: 0 12px 20px -6px rgb(17 24 20 / 12%), 0 4px 8px -4px rgb(17 24 20 / 8%);
+    --ch-shadow-xl: 0 20px 32px -8px rgb(17 24 20 / 16%), 0 8px 12px -6px rgb(17 24 20 / 10%);
+
+    /* base spacing scale (mobile default, overridden by media queries below) */
+    --space-page-x: 1rem;
+    --space-page-y: 1.5rem;
+    --space-section: 2rem;
+    --space-component: 1rem;
+    --space-grid: 1rem;
+
+    /* opacity */
+    --opacity-disabled: 0.5;
+    --opacity-hover: 0.08;
+    --opacity-overlay: 0.48;
+
+    /* z-index scale */
+    --z-sticky: 100;
+    --z-dropdown: 200;
+    --z-modal: 300;
+    --z-toast: 400;
+    --z-tooltip: 500;
+
+    /* motion */
+    --duration-instant: 0ms;
+    --duration-fast: 100ms;
+    --duration-normal: 150ms;
+    --duration-slow: 250ms;
+    --duration-slower: 400ms;
 }
 
-* {
-    box-sizing: border-box;
+[data-theme='dark'] {
+    --opacity-overlay: 0.64;
+
+    --ch-background: #0e1713;
+    --ch-foreground: #f3f7f5;
+
+    --ch-surface: #15211b;
+    --ch-surface-elevated: #1b2b23;
+    --ch-card: #15211b;
+    --ch-popover: #1b2b23;
+
+    --ch-foreground-secondary: #a9b8b0;
+    --ch-foreground-muted: #82938a;
+
+    --ch-border: #2d4036;
+    --ch-divider: #24352d;
+    --ch-input: #3a5044;
+    --ch-ring: #34d399;
+    --ch-primary-text: #34d399;
+
+    --ch-success: #4ade80;
+    --ch-warning: #fbbf24;
+    --ch-danger: #f87171;
+    --ch-info: #60a5fa;
+
+    --ch-shadow-xs: 0 1px 2px rgb(0 0 0 / 24%);
+    --ch-shadow-sm: 0 1px 3px rgb(0 0 0 / 30%), 0 1px 2px rgb(0 0 0 / 20%);
+    --ch-shadow-md: 0 4px 8px -2px rgb(0 0 0 / 36%), 0 2px 4px -2px rgb(0 0 0 / 24%);
+    --ch-shadow-lg: 0 12px 20px -6px rgb(0 0 0 / 42%), 0 4px 8px -4px rgb(0 0 0 / 28%);
+    --ch-shadow-xl: 0 20px 32px -8px rgb(0 0 0 / 48%), 0 8px 12px -6px rgb(0 0 0 / 32%);
+
+    --ch-border-strong: #496052;
+    --ch-focus-ring-offset: #0e1713;
+
+    --color-border-strong: var(--ch-border-strong);
+    --color-focus-ring-offset: var(--ch-focus-ring-offset);
 }
 
-html {
-    background: #0f1117;
+[data-theme='light'] {
+    --ch-border-strong: #496052;
+    --ch-focus-ring-offset: #f6f7f5;
+
+    --color-border-strong: var(--ch-border-strong);
+    --color-focus-ring-offset: var(--ch-focus-ring-offset);
 }
 
-body {
-    margin: 0;
-    min-width: 320px;
-    min-height: 100vh;
-    background: #0f1117;
+@theme inline {
+    --color-primary: #087f5b;
+    --color-primary-text: var(--ch-primary-text);
+    --color-primary-strong: #064e3b;
+    --color-primary-soft: #a7f3d0;
+    --color-primary-foreground: #ffffff;
+    --color-secondary: #0f766e;
+    --color-secondary-foreground: #ffffff;
+    --color-accent: #0f766e;
+
+    --color-success: var(--ch-success);
+    --color-warning: var(--ch-warning);
+    --color-danger: var(--ch-danger);
+    --color-info: var(--ch-info);
+    --color-information: var(--ch-info);
+
+    --color-brand: #087f5b;
+    --color-brand-strong: #064e3b;
+    --color-brand-soft: #a7f3d0;
+
+    --color-background: var(--ch-background);
+    --color-foreground: var(--ch-foreground);
+    --color-foreground-secondary: var(--ch-foreground-secondary);
+    --color-foreground-muted: var(--ch-foreground-muted);
+
+    --color-surface: var(--ch-surface);
+    --color-surface-elevated: var(--ch-surface-elevated);
+    --color-card: var(--ch-card);
+    --color-popover: var(--ch-popover);
+
+    --color-border: var(--ch-border);
+    --color-divider: var(--ch-divider);
+    --color-input: var(--ch-input);
+    --color-ring: var(--ch-ring);
+
+    /* typography */
+    --font-sans: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Consolas, monospace;
+
+    /* radius */
+    --radius-sm: 0.25rem;
+    --radius-md: 0.375rem;
+    --radius-lg: 0.5rem;
+    --radius-xl: 0.75rem;
+    --radius-2xl: 1rem;
+    --radius-full: 9999px;
+
+    /* shadows */
+    --shadow-xs: var(--ch-shadow-xs);
+    --shadow-sm: var(--ch-shadow-sm);
+    --shadow-md: var(--ch-shadow-md);
+    --shadow-lg: var(--ch-shadow-lg);
+    --shadow-xl: var(--ch-shadow-xl);
+
+    /* font weights */
+    --font-weight-light: 300;
+    --font-weight-regular: 400;
+    --font-weight-medium: 500;
+    --font-weight-semibold: 600;
+    --font-weight-bold: 700;
+
+    --text-display: 3rem;
+    --text-display--line-height: 3.5rem;
+    --text-display--letter-spacing: -0.03em;
+    --text-display--font-weight: 700;
+
+    --text-heading-1: 2.25rem;
+    --text-heading-1--line-height: 2.75rem;
+    --text-heading-1--letter-spacing: -0.02em;
+    --text-heading-1--font-weight: 700;
+
+    --text-heading-1-mobile: 1.875rem;
+    --text-heading-1-mobile--line-height: 2.375rem;
+    --text-heading-1-mobile--letter-spacing: -0.02em;
+    --text-heading-1-mobile--font-weight: 700;
+
+    --text-heading-2: 1.75rem;
+    --text-heading-2--line-height: 2.25rem;
+    --text-heading-2--letter-spacing: -0.015em;
+    --text-heading-2--font-weight: 700;
+
+    --text-heading-3: 1.375rem;
+    --text-heading-3--line-height: 1.875rem;
+    --text-heading-3--letter-spacing: -0.015em;
+    --text-heading-3--font-weight: 600;
+
+    --text-body-lg: 1.125rem;
+    --text-body-lg--line-height: 1.75rem;
+    --text-body-lg--letter-spacing: 0;
+    --text-body-lg--font-weight: 400;
+
+    --text-body: 1rem;
+    --text-body--line-height: 1.5rem;
+    --text-body--letter-spacing: 0;
+    --text-body--font-weight: 400;
+
+    --text-body-sm: 0.875rem;
+    --text-body-sm--line-height: 1.25rem;
+    --text-body-sm--letter-spacing: 0;
+    --text-body-sm--font-weight: 400;
+
+    --text-label: 0.875rem;
+    --text-label--line-height: 1.25rem;
+    --text-label--letter-spacing: 0.005em;
+    --text-label--font-weight: 500;
+
+    --text-caption: 0.75rem;
+    --text-caption--line-height: 1rem;
+    --text-caption--letter-spacing: 0.01em;
+    --text-caption--font-weight: 400;
+
+    /* spacing / layout */
+    --spacing: 0.25rem;
+    --spacing-page-x: var(--space-page-x);
+    --spacing-page-y: var(--space-page-y);
+    --spacing-section: var(--space-section);
+    --spacing-component: var(--space-component);
+    --spacing-grid: var(--space-grid);
+
+    /* breakpoints */
+    --breakpoint-sm: 40rem;
+    --breakpoint-md: 48rem;
+    --breakpoint-lg: 64rem;
+    --breakpoint-xl: 80rem;
+    --breakpoint-2xl: 96rem;
+
+    --container-sm: 40rem;
+    --container-md: 48rem;
+    --container-lg: 64rem;
+    --container-xl: 80rem;
+    --container-2xl: 96rem;
+
+    --container-reading: 42rem;
+    --container-content: 64rem;
+    --container-page: 80rem;
+
+    /* brand — placeholder */
+    --ch-primary: #4f46e5;
+    --ch-primary-strong: #3730a3;
+    --ch-primary-soft: #e0e7ff;
+    --ch-primary-foreground: #ffffff;
+    --ch-secondary: #0891b2;
+    --ch-secondary-foreground: #ffffff;
+
+    /* semantic */
+    --ch-success: #16a34a;
+    --ch-warning: #d97706;
+    --ch-danger: #dc2626;
+    --ch-info: #2563eb;
+
+    /* surface/text tokens (mapped from :root / [data-theme] above) */
+    --ch-background: var(--ch-background);
+    --ch-surface: var(--ch-surface);
+    --ch-surface-muted: var(--ch-surface-muted);
+    --ch-surface-elevated: var(--ch-surface-elevated);
+    --ch-text: var(--ch-text);
+    --ch-text-muted: var(--ch-text-muted);
+    --ch-text-subtle: var(--ch-text-subtle);
+    --ch-border: var(--ch-border);
+    --ch-border-strong: var(--ch-border-strong);
+    --ch-divider: var(--ch-divider);
+    --ch-input: var(--ch-input);
+
+    /* element colors (Tatari / Clash of Critters) */
+    --ch-fire: #d63b22;
+    --ch-water: #3b82f6;
+    --ch-grass: #22c55e;
+    --ch-lightning: #eab308;
+    --ch-rock: #a16207;
+    --ch-ice: #06b6d4;
+    --ch-wind: #14b8a6;
+    --ch-dark: #6366f1;
+    --ch-light: #f59e0b;
+    --ch-poison: #a855f7;
+    --ch-psychic: #ec4899;
+    --ch-metal: #64748b;
+    --ch-neutral: #78716c;
+
+    /* rarity accents */
+    --ch-rarity-common: #94a3b8;
+    --ch-rarity-rare: #3b82f6;
+    --ch-rarity-epic: #a855f7;
+    --ch-rarity-legendary: #f59e0b;
+
+    /* icon sizes */
+    --spacing-icon-compact: 1rem;
+    --spacing-icon-control: 1.125rem;
+    --spacing-icon-navigation: 1.25rem;
+    --spacing-icon-default: 1.5rem;
+    --spacing-icon-empty: 2.5rem;
+    --spacing-icon-empty-lg: 3rem;
+
+    /* motion */
+    --ease-standard: cubic-bezier(0.2, 0, 0, 1);
+    --ease-emphasized: cubic-bezier(0.2, 0, 0, 1.2);
+    --ease-exit: cubic-bezier(0.4, 0, 1, 1);
+
+    --animate-loading: ch-spin 800ms linear infinite;
+    --animate-skeleton: ch-skeleton 1.6s var(--ease-standard) infinite;
+    --animate-page-enter: ch-page-enter 180ms var(--ease-standard) both;
+
+    --shadow-card: var(--ch-shadow-sm);
+    --shadow-dropdown: var(--ch-shadow-md);
+    --shadow-popover: var(--ch-shadow-lg);
+    --shadow-modal: var(--ch-shadow-xl);
+    --shadow-floating-action: var(--ch-shadow-xl);
+    --opacity-disabled: 0.5;
+    --opacity-hover: 0.08;
+    --opacity-overlay: 0.48;
+
+    --z-index-dropdown: 200;
+    --z-index-sticky: 100;
+    --z-index-modal: 300;
+    --z-index-toast: 400;
+    --z-index-tooltip: 500;
+
+    /*
+    --opacity-disabled: var(--opacity-disabled);
+    --opacity-hover: var(--opacity-hover);
+    --opacity-overlay: var(--opacity-overlay);
+
+    --z-index-dropdown: var(--z-index-dropdown);
+    --z-index-sticky: var(--z-index-sticky);
+    --z-index-modal: var(--z-index-modal);
+    --z-index-toast: var(--z-index-toast);
+    --z-index-tooltip: var(--z-index-tooltip);
+    */
+
+    @keyframes ch-spin {
+        to {
+            transform: rotate(360deg);
+        }
+    }
+
+    @keyframes ch-skeleton {
+        0%,
+        100% {
+            opacity: 0.55;
+        }
+        50% {
+            opacity: 1;
+        }
+    }
+
+    @keyframes ch-page-enter {
+        from {
+            opacity: 0;
+            transform: translateY(0.25rem);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    --default-transition-duration: var(--duration-normal);
+    --default-transition-timing-function: var(--ease-standard);
+}
+
+/* ----------------------------------------------------------- */
+/* base */
+/* ----------------------------------------------------------- */
+
+@layer base {
+    html {
+        color-scheme: light;
+    }
+
+    html[data-theme='dark'] {
+        color-scheme: dark;
+    }
+
+    body {
+        min-width: min(320px, 100%);
+        min-height: 100vh;
+        margin: 0;
+        background-color: var(--color-background);
+        color: var(--color-foreground);
+        font-family: var(--font-sans);
+        text-rendering: optimizeLegibility;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+
+    button,
+    input,
+    select,
+    textarea {
+        font: inherit;
+    }
+}
+
+/* ----------------------------------------------------------- */
+/* utilities */
+/* ----------------------------------------------------------- */
+
+@layer utilities {
+    .layout-page {
+        width: min(100%, var(--container-page));
+        margin-inline: auto;
+        padding-inline: var(--space-page-x);
+    }
+
+    .layout-content {
+        width: min(100%, var(--container-content));
+        margin-inline: auto;
+        padding-inline: var(--space-page-x);
+    }
+
+    .layout-reading {
+        width: min(100%, var(--container-reading));
+        margin-inline: auto;
+        padding-inline: var(--space-page-x);
+    }
+
+    .layout-grid {
+        display: grid;
+        gap: var(--space-grid);
+    }
+
+    .layout-grid-responsive {
+        display: grid;
+        gap: var(--space-grid);
+        grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr));
+    }
+
+    .stat-value {
+        font-variant-numeric: tabular-nums;
+        font-feature-settings: 'tnum';
+    }
+}
+
+/* ----------------------------------------------------------- */
+/* motion & responsive overrides */
+/* ----------------------------------------------------------- */
+
+@media (prefers-reduced-motion: no-preference) {
+    html.theme-transitioning *,
+    html.theme-transitioning *::before,
+    html.theme-transitioning *::after {
+        transition:
+            background-color 150ms ease,
+            border-color 150ms ease,
+            color 150ms ease,
+            fill 150ms ease,
+            stroke 150ms ease;
+    }
+}
+
+/* sm: >= 40rem / 640px — large mobile / small tablet */
+@media (min-width: 40rem) {
+    :root {
+        --space-page-x: 1.25rem;
+        --space-page-y: 1.75rem;
+        --space-section: 2.5rem;
+        --space-grid: 1.25rem;
+    }
+}
+
+/* md: >= 48rem / 768px — tablet */
+@media (min-width: 48rem) {
+    :root {
+        --space-page-x: 1.5rem;
+        --space-page-y: 2rem;
+        --space-section: 3rem;
+        --space-grid: 1.5rem;
+    }
+}
+
+/* lg: >= 64rem / 1024px — desktop */
+@media (min-width: 64rem) {
+    :root {
+        --space-page-x: 1.5rem;
+        --space-page-y: 2rem;
+        --space-section: 3.5rem;
+        --space-grid: 1.5rem;
+    }
+}
+
+/* xl: >= 80rem / 1280px — large desktop */
+@media (min-width: 80rem) {
+    :root {
+        --space-page-x: 2rem;
+        --space-page-y: 2.5rem;
+        --space-section: 4rem;
+        --space-grid: 2rem;
+    }
 }
