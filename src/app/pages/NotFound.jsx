@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
-import { Button } from '../../shared/components/Button';
 import { APP_NAME } from '../config/app-config';
 import { ROUTES } from '../routes/route-path';
+import { Button } from '../../shared/components/ui/Button';
 
 export default function NotFound() {
     return (

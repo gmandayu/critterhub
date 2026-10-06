@@ -1,5 +1,5 @@
 import { isRouteErrorResponse, Link, useRouteError } from 'react-router-dom';
-import { Button } from '../../shared/components/Button';
+import { Button } from '../../shared/components/ui/Button';
 import { ErrorLayout } from '../layouts/ErrorLayout';
 import { ROUTES } from './route-path';
 
