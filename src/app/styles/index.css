@@ -8,35 +8,49 @@
 /* design tokens */
 /* ----------------------------------------------------------- */
 :root {
-    /* light theme (default) — warna dasar putih bersih */
-    --ch-background: #f6f7f5;
-    --ch-foreground: #111814;
+    /* Horde Drafter light palette */
+    --ch-background: #f3f4f8;
+    --ch-foreground: #1b1e26;
 
     --ch-surface: #ffffff;
-    --ch-surface-elevated: #ffffff;
+    --ch-surface-elevated: #f7f8fb;
 
     --ch-card: #ffffff;
-    --ch-popover: #ffffff;
+    --ch-popover: #f7f8fb;
 
-    --ch-foreground-secondary: #52645b;
-    --ch-foreground-muted: #65736c;
+    --ch-foreground-secondary: #565d6d;
+    --ch-foreground-muted: #646c7b;
 
-    --ch-border: #dde4e0;
-    --ch-divider: #e9eeeb;
-    --ch-input: #cbd5cf;
-    --ch-ring: #087f5b;
-    --ch-primary-text: #087f5b;
+    --ch-border: #d9dde7;
+    --ch-divider: #e6e9f0;
+    --ch-input: #c5cad5;
+    --ch-ring: #f0ab00;
+    --ch-primary: #f0ab00;
+    --ch-primary-strong: #d59500;
+    --ch-primary-soft: #fff0c2;
+    --ch-primary-foreground: #241a00;
+    --ch-primary-text: #7a5200;
+    --ch-secondary: #ff5fa8;
+    --ch-secondary-foreground: #24101b;
+    --ch-accent: #f0ab00;
+    --ch-border-strong: #aeb5c4;
+    --ch-focus-ring-offset: #f3f4f8;
 
-    --ch-success: #147438;
-    --ch-warning: #a34b08;
-    --ch-danger: #b42318;
-    --ch-info: #175cd3;
+    --ch-surface-muted: var(--ch-surface-elevated);
+    --ch-text: var(--ch-foreground);
+    --ch-text-muted: var(--ch-foreground-secondary);
+    --ch-text-subtle: var(--ch-foreground-muted);
 
-    --ch-shadow-xs: 0 1px 2px rgb(17 24 20 / 10%);
-    --ch-shadow-sm: 0 1px 3px rgb(17 24 20 / 8%), 0 1px 2px rgb(17 24 20 / 6%);
-    --ch-shadow-md: 0 4px 8px -2px rgb(17 24 20 / 10%), 0 2px 4px -2px rgb(17 24 20 / 6%);
-    --ch-shadow-lg: 0 12px 20px -6px rgb(17 24 20 / 12%), 0 4px 8px -4px rgb(17 24 20 / 8%);
-    --ch-shadow-xl: 0 20px 32px -8px rgb(17 24 20 / 16%), 0 8px 12px -6px rgb(17 24 20 / 10%);
+    --ch-success: #229a5c;
+    --ch-warning: #a66a00;
+    --ch-danger: #d1402a;
+    --ch-info: #2877bd;
+
+    --ch-shadow-xs: 0 1px 2px rgb(18 20 26 / 8%);
+    --ch-shadow-sm: 0 1px 2px rgb(18 20 26 / 10%), 0 2px 8px rgb(18 20 26 / 6%);
+    --ch-shadow-md: 0 2px 6px rgb(18 20 26 / 12%), 0 12px 32px rgb(18 20 26 / 8%);
+    --ch-shadow-lg: 0 8px 20px rgb(18 20 26 / 12%), 0 20px 48px rgb(18 20 26 / 10%);
+    --ch-shadow-xl: 0 12px 28px rgb(18 20 26 / 14%), 0 28px 64px rgb(18 20 26 / 12%);
 
     /* base spacing scale (mobile default, overridden by media queries below) */
     --space-page-x: 1rem;
@@ -68,58 +82,66 @@
 [data-theme='dark'] {
     --opacity-overlay: 0.64;
 
-    --ch-background: #0e1713;
-    --ch-foreground: #f3f7f5;
+    /* Horde Drafter dark palette */
+    --ch-background: #12141a;
+    --ch-foreground: #e7eaf1;
 
-    --ch-surface: #15211b;
-    --ch-surface-elevated: #1b2b23;
-    --ch-card: #15211b;
-    --ch-popover: #1b2b23;
+    --ch-surface: #1a1d26;
+    --ch-surface-elevated: #22262f;
+    --ch-card: #1a1d26;
+    --ch-popover: #22262f;
 
-    --ch-foreground-secondary: #a9b8b0;
-    --ch-foreground-muted: #82938a;
+    --ch-foreground-secondary: #a3aab9;
+    --ch-foreground-muted: #8f99aa;
 
-    --ch-border: #2d4036;
-    --ch-divider: #24352d;
-    --ch-input: #3a5044;
-    --ch-ring: #34d399;
-    --ch-primary-text: #34d399;
+    --ch-border: #2e3340;
+    --ch-divider: #262b35;
+    --ch-input: #3b414e;
+    --ch-ring: #ffc93c;
+    --ch-primary: #ffc93c;
+    --ch-primary-strong: #e5ad22;
+    --ch-primary-soft: #ffe08a;
+    --ch-primary-foreground: #2a2005;
+    --ch-primary-text: #ffc93c;
+    --ch-secondary: #ff5fa8;
+    --ch-secondary-foreground: #24101b;
+    --ch-accent: #ffc93c;
 
-    --ch-success: #4ade80;
-    --ch-warning: #fbbf24;
-    --ch-danger: #f87171;
-    --ch-info: #60a5fa;
+    --ch-success: #55c98a;
+    --ch-warning: #ffc93c;
+    --ch-danger: #f0654f;
+    --ch-info: #4d9dff;
 
-    --ch-shadow-xs: 0 1px 2px rgb(0 0 0 / 24%);
-    --ch-shadow-sm: 0 1px 3px rgb(0 0 0 / 30%), 0 1px 2px rgb(0 0 0 / 20%);
-    --ch-shadow-md: 0 4px 8px -2px rgb(0 0 0 / 36%), 0 2px 4px -2px rgb(0 0 0 / 24%);
-    --ch-shadow-lg: 0 12px 20px -6px rgb(0 0 0 / 42%), 0 4px 8px -4px rgb(0 0 0 / 28%);
-    --ch-shadow-xl: 0 20px 32px -8px rgb(0 0 0 / 48%), 0 8px 12px -6px rgb(0 0 0 / 32%);
+    --ch-shadow-xs: 0 1px 2px rgb(0 0 0 / 28%);
+    --ch-shadow-sm: 0 1px 2px rgb(0 0 0 / 28%), 0 2px 8px rgb(0 0 0 / 18%);
+    --ch-shadow-md: 0 2px 6px rgb(0 0 0 / 32%), 0 12px 32px rgb(0 0 0 / 28%);
+    --ch-shadow-lg: 0 8px 20px rgb(0 0 0 / 36%), 0 20px 48px rgb(0 0 0 / 30%);
+    --ch-shadow-xl: 0 12px 28px rgb(0 0 0 / 42%), 0 28px 64px rgb(0 0 0 / 34%);
 
-    --ch-border-strong: #496052;
-    --ch-focus-ring-offset: #0e1713;
+    --ch-border-strong: #495164;
+    --ch-focus-ring-offset: #12141a;
 
     --color-border-strong: var(--ch-border-strong);
     --color-focus-ring-offset: var(--ch-focus-ring-offset);
 }
 
 [data-theme='light'] {
-    --ch-border-strong: #496052;
-    --ch-focus-ring-offset: #f6f7f5;
+    --ch-border-strong: #aeb5c4;
+    --ch-focus-ring-offset: #f3f4f8;
 
     --color-border-strong: var(--ch-border-strong);
     --color-focus-ring-offset: var(--ch-focus-ring-offset);
 }
 
 @theme inline {
-    --color-primary: #087f5b;
+    --color-primary: var(--ch-primary);
     --color-primary-text: var(--ch-primary-text);
-    --color-primary-strong: #064e3b;
-    --color-primary-soft: #a7f3d0;
-    --color-primary-foreground: #ffffff;
-    --color-secondary: #0f766e;
-    --color-secondary-foreground: #ffffff;
-    --color-accent: #0f766e;
+    --color-primary-strong: var(--ch-primary-strong);
+    --color-primary-soft: var(--ch-primary-soft);
+    --color-primary-foreground: var(--ch-primary-foreground);
+    --color-secondary: var(--ch-secondary);
+    --color-secondary-foreground: var(--ch-secondary-foreground);
+    --color-accent: var(--ch-accent);
 
     --color-success: var(--ch-success);
     --color-warning: var(--ch-warning);
@@ -127,9 +149,9 @@
     --color-info: var(--ch-info);
     --color-information: var(--ch-info);
 
-    --color-brand: #087f5b;
-    --color-brand-strong: #064e3b;
-    --color-brand-soft: #a7f3d0;
+    --color-brand: var(--ch-primary);
+    --color-brand-strong: var(--ch-primary-strong);
+    --color-brand-soft: var(--ch-primary-soft);
 
     --color-background: var(--ch-background);
     --color-foreground: var(--ch-foreground);
@@ -142,9 +164,33 @@
     --color-popover: var(--ch-popover);
 
     --color-border: var(--ch-border);
+    --color-border-strong: var(--ch-border-strong);
     --color-divider: var(--ch-divider);
     --color-input: var(--ch-input);
     --color-ring: var(--ch-ring);
+    --color-focus-ring-offset: var(--ch-focus-ring-offset);
+
+    /* game element colors */
+    --color-fire: var(--ch-fire);
+    --color-water: var(--ch-water);
+    --color-grass: var(--ch-grass);
+    --color-lightning: var(--ch-lightning);
+    --color-electric: var(--ch-lightning);
+    --color-rock: var(--ch-rock);
+    --color-ice: var(--ch-ice);
+    --color-wind: var(--ch-wind);
+    --color-dark: var(--ch-dark);
+    --color-light: var(--ch-light);
+    --color-poison: var(--ch-poison);
+    --color-psychic: var(--ch-psychic);
+    --color-metal: var(--ch-metal);
+    --color-neutral: var(--ch-neutral);
+
+    /* rarity colors */
+    --color-rarity-common: var(--ch-rarity-common);
+    --color-rarity-rare: var(--ch-rarity-rare);
+    --color-rarity-epic: var(--ch-rarity-epic);
+    --color-rarity-legendary: var(--ch-rarity-legendary);
 
     /* typography */
     --font-sans: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
@@ -247,39 +293,12 @@
     --container-content: 64rem;
     --container-page: 80rem;
 
-    /* brand — placeholder */
-    --ch-primary: #4f46e5;
-    --ch-primary-strong: #3730a3;
-    --ch-primary-soft: #e0e7ff;
-    --ch-primary-foreground: #ffffff;
-    --ch-secondary: #0891b2;
-    --ch-secondary-foreground: #ffffff;
-
-    /* semantic */
-    --ch-success: #16a34a;
-    --ch-warning: #d97706;
-    --ch-danger: #dc2626;
-    --ch-info: #2563eb;
-
-    /* surface/text tokens (mapped from :root / [data-theme] above) */
-    --ch-background: var(--ch-background);
-    --ch-surface: var(--ch-surface);
-    --ch-surface-muted: var(--ch-surface-muted);
-    --ch-surface-elevated: var(--ch-surface-elevated);
-    --ch-text: var(--ch-text);
-    --ch-text-muted: var(--ch-text-muted);
-    --ch-text-subtle: var(--ch-text-subtle);
-    --ch-border: var(--ch-border);
-    --ch-border-strong: var(--ch-border-strong);
-    --ch-divider: var(--ch-divider);
-    --ch-input: var(--ch-input);
-
     /* element colors (Tatari / Clash of Critters) */
-    --ch-fire: #d63b22;
-    --ch-water: #3b82f6;
-    --ch-grass: #22c55e;
-    --ch-lightning: #eab308;
-    --ch-rock: #a16207;
+    --ch-fire: #e8453c;
+    --ch-water: #37a7e6;
+    --ch-grass: #57c14a;
+    --ch-lightning: #f2be16;
+    --ch-rock: #a2762f;
     --ch-ice: #06b6d4;
     --ch-wind: #14b8a6;
     --ch-dark: #6366f1;
@@ -326,18 +345,6 @@
     --z-index-modal: 300;
     --z-index-toast: 400;
     --z-index-tooltip: 500;
-
-    /*
-    --opacity-disabled: var(--opacity-disabled);
-    --opacity-hover: var(--opacity-hover);
-    --opacity-overlay: var(--opacity-overlay);
-
-    --z-index-dropdown: var(--z-index-dropdown);
-    --z-index-sticky: var(--z-index-sticky);
-    --z-index-modal: var(--z-index-modal);
-    --z-index-toast: var(--z-index-toast);
-    --z-index-tooltip: var(--z-index-tooltip);
-    */
 
     @keyframes ch-spin {
         to {

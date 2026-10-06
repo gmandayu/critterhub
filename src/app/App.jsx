@@ -1,7 +1,5 @@
-import { AppProviders } from './providers/AppProviders';
+import { AppProvider } from './providers/AppProvider';
 
-function App() {
-    return <AppProviders />;
+export default function App() {
+    return <AppProvider />;
 }
-
-export default App;
