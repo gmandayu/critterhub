@@ -7,9 +7,18 @@ import NotFound from '../pages/NotFound';
 import { PagePlaceholder } from '../pages/PagePlaceholder';
 import { TatariDetailPage } from '../pages/TatariDetailPage';
 import { RouteErrorBoundary } from './RouteErrorBoundary';
-import { ROUTE_PATTERNS } from './route-path';
+import { ROUTE_PATTERNS, ROUTES } from './route-path';
 
-export const referenceRoutes = [];
+export const referenceRoutes = [
+    {
+        path: ROUTES.playground,
+        lazy: async () => {
+            const { Playground } = await import('@app/pages/Playground.jsx');
+
+            return { Component: Playground };
+        },
+    },
+];
 
 export const publicRoutes = [
     {

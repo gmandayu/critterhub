@@ -1,5 +1,6 @@
 export const ROUTES = Object.freeze({
     home: '/',
+    playground: '/playground',
     dex: '/dex',
     planner: '/planner',
     tierList: '/tier-list',
