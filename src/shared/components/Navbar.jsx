@@ -7,6 +7,7 @@ import { cn } from '../lib/cn';
 import { ThemeSwitcher } from './ThemeSwitcher';
 
 const navItems = [
+    { label: 'Home', to: ROUTES.home },
     { label: 'Dex', to: ROUTES.dex },
     { label: 'Planner', to: ROUTES.planner },
     { label: 'Tier List', to: ROUTES.tierList },

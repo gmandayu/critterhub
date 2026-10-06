@@ -7,3 +7,4 @@ export { Skeleton, SkeletonText } from './Skeleton';
 export { ToastProvider } from './Toast';
 export { useToast } from './ToastContext';
 export { InfiniteScrollTrigger, Pagination } from './Pagination';
+export { FilterSidebar } from './FilterSidebar';

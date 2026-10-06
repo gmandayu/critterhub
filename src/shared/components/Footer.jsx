@@ -9,14 +9,24 @@ export function Footer() {
                 <p className="text-foreground-secondary">
                     {APP_NAME} is an unofficial fan project and is not affiliated with Farlight Games.
                 </p>
-                <nav aria-label="Footer" className="flex gap-4">
-                    <Link className="text-primary-text hover:underline" to={ROUTES.sources}>
-                        Sources
-                    </Link>
-                    <Link className="text-primary-text hover:underline" to={ROUTES.license}>
-                        License
-                    </Link>
-                </nav>
+                <div className="flex flex-wrap gap-4">
+                    <nav aria-label="Footer" className="flex gap-4">
+                        <Link className="text-primary-text hover:underline" to={ROUTES.sources}>
+                            Sources
+                        </Link>
+                        <Link className="text-primary-text hover:underline" to={ROUTES.license}>
+                            License
+                        </Link>
+                    </nav>
+                    <a
+                        className="text-primary-text hover:underline"
+                        href="https://linktr.ee/clashofcritters"
+                        rel="noreferrer"
+                        target="_blank"
+                    >
+                        Official links
+                    </a>
+                </div>
             </div>
         </footer>
     );
